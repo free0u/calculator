@@ -63,10 +63,11 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 	
 	public void testCase5() {
 		String exp = "+-2";
-		double res = 2;
+		double res = -2;
 		
 		Assert.assertTrue(mp.equalDouble(res, mp.evaluate(exp)));
     }
+	
 	
 	public void testCase6() {
 		String exp = "-+2";
