@@ -25,6 +25,28 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 		return Math.abs(a - b) < eps;
 	}
 	
+	
+	public void testCaseDouble0() {
+		String exp = "1/3";
+		double res = 0.33333333;
+		
+		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
+    }
+	
+	public void testCaseDouble1() {
+		String exp = "0.333333333*3";
+		double res = 1;
+		
+		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
+    }
+	
+	public void testCaseDouble2() {
+		String exp = "(0.2+0.2+0.2+0.2+0.2)/(10/2)";
+		double res = 0.2;
+		
+		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
+    }
+	
 	public void testCase0() {
 		String exp = "0";
 		double res = 0;
@@ -125,6 +147,26 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
 	}
 	
+	public void testCase14() {
+		String exp = "++++++10";
+		double res = 10;
+		
+		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
+	}
+	
+	public void testCase15() {
+		String exp = "----10";
+		double res = 10;
+		
+		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
+	}
+	
+	public void testCase16() {
+		String exp = "-(2*-5+-7)";
+		double res = 17;
+		
+		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
+	}
 	
 	
 	public void testCaseIllegal0() {
@@ -165,6 +207,24 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 	
 	public void testCaseIllegal4() {
 		String test = "(1+2))";
+		try {
+			mp.evaluate(test);
+			fail(test);
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	
+	public void testCaseIllegal5() {
+		String test = "2**3";
+		try {
+			mp.evaluate(test);
+			fail(test);
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	
+	public void testCaseIllegal6() {
+		String test = "/1";
 		try {
 			mp.evaluate(test);
 			fail(test);
