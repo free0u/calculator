@@ -57,7 +57,17 @@ public class MathParser {
 		return res;
 	}
 	
+	private boolean isOperation(char c) {
+		for (int i = 0; i < operations.length; ++i) {
+			if (operations[i] == c) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public double evaluate(String exp) {
+		// empty string
 		if (exp.length() == 0) {
 			throw new IllegalArgumentException("Empty string");
 		}
@@ -66,7 +76,7 @@ public class MathParser {
 		int ind = findOperationIndex(exp);
 		
 		if (exp.charAt(0) == '(' && exp.charAt(exp.length() - 1) == ')') {
-			// need: (2+4)
+			// need: (2+4*3)
 			// fail: (1)*(2)
 			boolean f = true;
 			for (int i = 0; i < balance.length; ++i) {
@@ -93,6 +103,17 @@ public class MathParser {
 		String leftExp, rightExp;
 		leftExp = exp.substring(0, ind);
 		rightExp = exp.substring(ind + 1, exp.length());
+		
+		// TODO add code to 2*-1 case
+		if (exp.charAt(ind) == '+' || exp.charAt(ind) == '-') {
+			if (ind > 0) {
+				if (isOperation(exp.charAt(ind - 1))) {
+					leftExp = exp.substring(0, ind - 1);
+					rightExp = exp.substring(ind, exp.length());
+					--ind;
+				}
+			}
+		}
 		
 		// unary operation
 		if (leftExp.equals("")) {
