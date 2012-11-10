@@ -9,6 +9,7 @@ import android.test.ActivityInstrumentationTestCase2;
 public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActivity> {
 
 	MathParser mp;
+	final double eps = 1e-5;
 	
 	public MainActivityTest() {
 		super(MainActivity.class);
@@ -20,6 +21,9 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 		mp = new MathParser();
 	}
 	
+	public boolean equalDouble(double a, double b) {
+		return Math.abs(a - b) < eps;
+	}
 
 	public void testTrue() {
 		Assert.assertTrue(true);
@@ -29,35 +33,35 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 		String exp = "0";
 		double res = 0;
 		
-		Assert.assertTrue(mp.equalDouble(res, mp.evaluate(exp)));
+		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
     }
 	
 	public void testCase1() {
 		String exp = "2+2";
 		double res = 4;
 		
-		Assert.assertTrue(mp.equalDouble(res, mp.evaluate(exp)));
+		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
     }
 	
 	public void testCase2() {
 		String exp = "2+2*2";
 		double res = 6;
 		
-		Assert.assertTrue(mp.equalDouble(res, mp.evaluate(exp)));
+		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
     }
 	
 	public void testCase3() {
 		String exp = "-1";
 		double res = -1;
 		
-		Assert.assertTrue(mp.equalDouble(res, mp.evaluate(exp)));
+		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
     }
 	
 	public void testCase4() {
 		String exp = "+2";
 		double res = 2;
 		
-		Assert.assertTrue(mp.equalDouble(res, mp.evaluate(exp)));
+		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
     }
 	
 	
@@ -65,7 +69,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 		String exp = "+-2";
 		double res = -2;
 		
-		Assert.assertTrue(mp.equalDouble(res, mp.evaluate(exp)));
+		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
     }
 	
 	
@@ -73,12 +77,8 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 		String exp = "-+2";
 		double res = -2;
 		
-		Assert.assertTrue(mp.equalDouble(res, mp.evaluate(exp)));
+		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
     }
-	
-	
-	
-	
 	
 	
 }
