@@ -15,9 +15,16 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         
         MathParser mp = new MathParser();
-        double res = mp.evaluate("2+2");
+        
+        String result;
+        try {
+        	double res = mp.evaluate("-+2");
+        	result = Double.toString(res);
+        } catch (IllegalArgumentException e) {
+        	result = "Illegal expression";
+        }
         
         tv = (TextView)findViewById(R.id.textView_out);
-        tv.setText(Double.toString(res));
+        tv.setText(result);
     }
 }
