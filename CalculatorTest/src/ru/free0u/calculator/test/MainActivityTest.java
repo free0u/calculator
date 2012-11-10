@@ -89,6 +89,43 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
 	}
 	
+	public void testCase9() {
+		String exp = "1/0.0001+0.002";
+		double res = 10000.002;
+		
+		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
+	}
+	
+	public void testCase10() {
+		String exp = "(2*(3*(1+4)+(2*7)))+(2+3)+1";
+		double res = 64;
+		
+		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
+	}
+	
+	public void testCase11() {
+		String exp = "((((1+2))))";
+		double res = 3;
+		
+		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
+	}
+	
+	
+	public void testCase12() {
+		String exp = "(1)*((2))*(((3)))*((((4))))";
+		double res = 24;
+		
+		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
+	}
+	
+	public void testCase13() {
+		String exp = "(1+(2+(3+(4))))";
+		double res = 10;
+		
+		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
+	}
+	
+	
 	
 	public void testCaseIllegal0() {
 		String test = "0 0";
@@ -116,6 +153,25 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 		} catch (IllegalArgumentException e) {
 		}
 	}
+	
+	public void testCaseIllegal3() {
+		String test = "((1+2)";
+		try {
+			mp.evaluate(test);
+			fail(test);
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	
+	public void testCaseIllegal4() {
+		String test = "(1+2))";
+		try {
+			mp.evaluate(test);
+			fail(test);
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	
 	
 	
 	

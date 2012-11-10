@@ -1,31 +1,86 @@
 package ru.free0u.calculator;
 
+import android.util.Log;
+
 public class MathParser {
 	final double eps = 1e-5;
 	
 	char[] operations = {'+', '-', '*', '/'};
+	int [] balance = null;
+	
 	
 	public MathParser() {
 		
 	}
 	
-	
-	
-	
 	private int findOperationIndex(String exp) {
+		balance = new int[exp.length()];
+		int b = 0;
+		for (int i = 0; i < exp.length(); ++i) {
+			if (exp.charAt(i) == '(') {
+				++b;
+				balance[i] = b;
+			} else if (exp.charAt(i) == ')') {
+				balance[i] = b;
+				--b;
+			} else {
+				balance[i] = b;
+			}
+		}
+		// TODO remove out
+		Log.i("balance", exp + " == " + intArrToString(balance));
+		
 		for (int i = 0; i < operations.length; ++i) {
 			char op = operations[i];
-			int index = exp.indexOf(op);
-			if (index != -1) return index;
+			
+			int index = -1;
+			while (true) {
+				index = exp.indexOf(op, index + 1);
+				if (index == -1) {
+					break;
+				}
+				if (balance[index] == 0) {
+					return index;
+				}
+			}
 		}
 		return -1;
 	}
 	
+	// TODO remove func
+	private String intArrToString(int[] a) {
+		String res = "";
+		for (int i = 0; i < a.length; ++i) {
+			res += Integer.toString(a[i]);
+			res += " ";
+		}
+		return res;
+	}
+	
 	public double evaluate(String exp) {
+		if (exp.length() == 0) {
+			throw new IllegalArgumentException("Empty string");
+		}
+		
+		// find index of operation and calculating balance
 		int ind = findOperationIndex(exp);
 		
-		double res;
+		if (exp.charAt(0) == '(' && exp.charAt(exp.length() - 1) == ')') {
+			// need: (2+4)
+			// fail: (1)*(2)
+			boolean f = true;
+			for (int i = 0; i < balance.length; ++i) {
+				if (balance[i] < 1) {
+					f = false;
+					break;
+				}
+			}
+			if (f) {
+				return evaluate(exp.substring(1, exp.length() - 1));
+			}
+		}
 		
+		double res;
 		if (ind == -1) {
 			try {
 				res = Double.parseDouble(exp);
