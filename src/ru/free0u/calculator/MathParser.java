@@ -27,8 +27,6 @@ public class MathParser {
 				balance[i] = b;
 			}
 		}
-		// TODO remove out
-		Log.i("balance", exp + " == " + intArrToString(balance));
 		
 		for (int i = 0; i < operations.length; ++i) {
 			char op = operations[i];
@@ -40,29 +38,8 @@ public class MathParser {
 					}
 				}
 			}
-			
-			// TODO delete
-//			while (true) {
-//				index = exp.indexOf(op, index + 1);
-//				if (index == -1) {
-//					break;
-//				}
-//				if (balance[index] == 0) {
-//					return index;
-//				}
-//			}
 		}
 		return -1;
-	}
-	
-	// TODO remove func
-	private String intArrToString(int[] a) {
-		String res = "";
-		for (int i = 0; i < a.length; ++i) {
-			res += Integer.toString(a[i]);
-			res += " ";
-		}
-		return res;
 	}
 	
 	private boolean isOperation(char c) {
@@ -112,7 +89,6 @@ public class MathParser {
 		leftExp = exp.substring(0, ind);
 		rightExp = exp.substring(ind + 1, exp.length());
 		
-		// TODO add code to 2*-1 case
 		if (exp.charAt(ind) == '+' || exp.charAt(ind) == '-') {
 			if (ind > 0) {
 				if (isOperation(exp.charAt(ind - 1))) {
