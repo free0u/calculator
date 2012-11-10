@@ -33,16 +33,24 @@ public class MathParser {
 		for (int i = 0; i < operations.length; ++i) {
 			char op = operations[i];
 			
-			int index = -1;
-			while (true) {
-				index = exp.indexOf(op, index + 1);
-				if (index == -1) {
-					break;
-				}
-				if (balance[index] == 0) {
-					return index;
+			for (int index = exp.length() - 1; index >= 0; --index) {
+				if (exp.charAt(index) == op) {
+					if (balance[index] == 0) {
+						return index;
+					}
 				}
 			}
+			
+			// TODO delete
+//			while (true) {
+//				index = exp.indexOf(op, index + 1);
+//				if (index == -1) {
+//					break;
+//				}
+//				if (balance[index] == 0) {
+//					return index;
+//				}
+//			}
 		}
 		return -1;
 	}
