@@ -24,10 +24,6 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 	public boolean equalDouble(double a, double b) {
 		return Math.abs(a - b) < eps;
 	}
-
-	public void testTrue() {
-		Assert.assertTrue(true);
-    }
 	
 	public void testCase0() {
 		String exp = "0";
@@ -64,7 +60,6 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
     }
 	
-	
 	public void testCase5() {
 		String exp = "+-2";
 		double res = -2;
@@ -79,6 +74,49 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 		
 		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
     }
+	
+	public void testCase7() {
+		String exp = "2*+3";
+		double res = 6;
+		
+		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
+	}
+	
+	public void testCase8() {
+		String exp = "--2";
+		double res = 2;
+		
+		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
+	}
+	
+	
+	public void testCaseIllegal0() {
+		String test = "0 0";
+		try {
+			mp.evaluate(test);
+			fail(test);
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	
+	public void testCaseIllegal1() {
+		String test = "*1";
+		try {
+			mp.evaluate(test);
+			fail(test);
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	
+	public void testCaseIllegal2() {
+		String test = "1+";
+		try {
+			mp.evaluate(test);
+			fail(test);
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	
 	
 	
 }
