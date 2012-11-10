@@ -2,35 +2,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-
+
     <EditText
         android:id="@+id/editText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/button1"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="14dp"
-        android:ems="10" >
+        android:layout_toLeftOf="@+id/button1"
+        android:hint="@string/enter_expession"
+        android:textSize="@dimen/font_size" >
 
         <requestFocus />
     </EditText>
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/editText1"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/editText1"
-        android:text="Button" />
-
     <TextView
         android:id="@+id/textView_out"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/editText1"
-        android:layout_alignRight="@+id/button1"
         android:layout_below="@+id/editText1"
         android:layout_marginTop="16dp"
-        android:text="TextView" />
+        android:text="@string/result_of_calc" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/button_calc" />
 
 </RelativeLayout>

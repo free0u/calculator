@@ -1,7 +1,5 @@
 package ru.free0u.calculator;
 
-import android.util.Log;
-
 public class MathParser {
 	final double eps = 1e-5;
 	

@@ -3,7 +3,6 @@ package ru.free0u.calculator;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -42,8 +41,6 @@ public class MainActivity extends Activity implements OnClickListener {
         bt.setOnClickListener(this);
         
         mp = new MathParser();
-        
-        setExpressionResult("(1)*((2))*(((3)))*((((4))))");
     }
 
 	public void onClick(View v) {

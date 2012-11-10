@@ -3,6 +3,9 @@
     <string name="app_name">Calculator</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Calculator</string>
+    <string name="button_calc">Calculate</string>
+    <string name="enter_expession">Enter expression (only &quot;+-*/().&quot;)</string>
+    <string name="result_of_calc">Result of calculation</string>
 
 </resources>
