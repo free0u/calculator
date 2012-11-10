@@ -155,6 +155,14 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
 	}
 	
+	public void testCase17() {
+		String exp = "-1+2-3+4-5+6";
+		double res = 3;
+		
+		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
+	}
+	
+	
 	
 	public void testCaseIllegal0() {
 		String test = "0 0";
