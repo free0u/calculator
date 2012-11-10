@@ -139,6 +139,9 @@ public class MathParser {
 		case '*':
 			return leftRes * rightRes;
 		case '/':
+			if (Math.abs(rightRes) < 1e-8) { // divide by zero
+				throw new ArithmeticException();
+			}
 			return leftRes / rightRes;
 		default:
 			throw new IllegalArgumentException("Error operarion <" + exp.charAt(ind) + ">");

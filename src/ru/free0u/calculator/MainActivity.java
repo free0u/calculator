@@ -25,6 +25,8 @@ public class MainActivity extends Activity implements OnClickListener {
         	result = Double.toString(res);
         } catch (IllegalArgumentException e) {
         	result = "Illegal expression";
+        } catch (ArithmeticException e) {
+        	result = "Divide by zero";
         }
 		tv.setText(result);
 	}
