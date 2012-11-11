@@ -169,6 +169,19 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
 	}
 	
+	public void testCase19() {
+		String exp = "1+1+1+1+1+1-2-2-2-2-2-2-2+3+3+3+3+3+3-4-4-4-4-4-4-4-4-4-4";
+		double res = -30;
+		
+		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
+	}
+	
+	public void testCase20() {
+		String exp = "-2/-2";
+		double res = 1;
+		
+		Assert.assertTrue(equalDouble(res, mp.evaluate(exp)));
+	}
 	
 	public void testCaseIllegal0() {
 		String test = "0 0";
@@ -271,6 +284,24 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 	
 	public void testCaseIllegal11() {
 		String test = "1,0";
+		try {
+			mp.evaluate(test);
+			fail(test);
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	
+	public void testCaseIllegal12() {
+		String test = "1//2";
+		try {
+			mp.evaluate(test);
+			fail(test);
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	
+	public void testCaseIllegal13() {
+		String test = "54/*2";
 		try {
 			mp.evaluate(test);
 			fail(test);
